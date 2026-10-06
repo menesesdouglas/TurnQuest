@@ -16,9 +16,9 @@ class Player:
 
     def __init__(self):
         """Inicializa um novo jogador com atributos aleatórios."""
-        self.current_life = randint(15, 22)
+        self.current_life = randint(30, 55)
         self.max_life = self.current_life
-        self.base_damage = 3
+        self.base_damage = randint(8,12)
         self.level = 1
         self.xp = 0
         self.xp_to_next_level = 100
@@ -34,8 +34,8 @@ class Player:
         while self.xp >= self.xp_to_next_level:
             self.level += 1
             levels_gained += 1
-            self.base_damage += randint(1, 3)
-            self.max_life += randint(3, 6)
+            self.base_damage += randint(3, 6)
+            self.max_life += randint(5, 8)
             self.current_life = self.max_life
             self.xp -= self.xp_to_next_level
             # Aumenta o XP necessário para o próximo nível
@@ -55,12 +55,12 @@ class Player:
             int: Dano causado pelo ataque (0 se errou)
         """
         # 20% de chance de errar
-        if randint(1, 100) <= 20:
+        if randint(1, 100) <= 12:
             print("Você errou o ataque!")
             return 0
         
         # 15% de chance de crítico
-        is_critical = randint(1, 100) <= 15
+        is_critical = randint(1, 100) <= 30
         damage = self.base_damage * 2 if is_critical else self.base_damage
         
         if is_critical:
